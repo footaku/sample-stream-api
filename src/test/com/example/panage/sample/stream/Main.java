@@ -4,11 +4,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.powermock.modules.junit4.PowerMockRunner;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
@@ -91,6 +89,20 @@ public class Main {
 
         // then
         assertEquals(new Data("2", "3", "4"), actual.get("2"));
+    }
+
+    @Test
+    public void reduceつかって加算() {
+        // given
+        int[] array = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+
+        // when
+        int actual = Arrays.stream(array)
+                .reduce((total, current) -> total + current)
+                .orElse(0);
+
+        // then
+        assertEquals(55, actual);
     }
 
     private static class Data {
